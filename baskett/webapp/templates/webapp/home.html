@@ -11,5 +11,6 @@
 		<li><a href="{% url 'webapp:index' category.category %}">{{ category.category }}</a></li>
 	</ul>
 	{% endfor %}
+	<li><a href="{% url 'webapp:index' 'all' %}">View all products</a></li>
 </body>
 </html>
