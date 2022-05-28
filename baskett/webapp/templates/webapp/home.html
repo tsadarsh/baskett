@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Landing page</title>
+</head>
+<body>
+	{% for category in categories %}
+	<ul>
+		<li><a href="{% url 'webapp:index' category.category %}">{{ category.category }}</a></li>
+	</ul>
+	{% endfor %}
+</body>
+</html>
