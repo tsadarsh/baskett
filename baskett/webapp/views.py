@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Product, Category
 
 
+@login_required
 def home(request):
 	"""Home page lists the categories available to choose from"""
 	categories = Category.objects.all
