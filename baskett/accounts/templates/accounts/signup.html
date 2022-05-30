@@ -9,7 +9,7 @@
 <body>
 	<div class="login-box">
 	  <h2>Login</h2>
-	  <form action="{% url 'accounts:login_auth'%}" method="post">
+	  <form action="{% url 'accounts:signup_auth'%}" method="post">
 	  {% csrf_token %}
 	  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	    <div class="user-box">
@@ -17,9 +17,17 @@
 	      <label>Username</label>
 	    </div>
 	    <div class="user-box">
+	      <input type="email" name="email" required="">
+	      <label>Email ID</label>
+	    </div>
+	    <div class="user-box">
 	      <input type="password" name="passwd" required="">
 	      <label>Password</label>
 	    </div>
+	    <div class="user-box">
+	      <input type="password" name="passwd_conf" required="">
+	      <label>Re-enter Password</label>
+	    </div>	
 	    <a href="#">
 	      <span></span>
 	      <span></span>
