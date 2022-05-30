@@ -9,13 +9,15 @@
 <body>
 	<div class="login-box">
 	  <h2>Login</h2>
-	  <form>
+	  <form action="{% url 'accounts:auth'%}" method="post">
+	  {% csrf_token %}
+	  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	    <div class="user-box">
-	      <input type="text" name="" required="">
+	      <input type="text" name="uname" required="">
 	      <label>Username</label>
 	    </div>
 	    <div class="user-box">
-	      <input type="password" name="" required="">
+	      <input type="password" name="passwd" required="">
 	      <label>Password</label>
 	    </div>
 	    <a href="#">
@@ -23,7 +25,7 @@
 	      <span></span>
 	      <span></span>
 	      <span></span>
-	      Submit
+	      <input type="submit" name="submit" value="Submit">
 	    </a>
 	  </form>
 	</div>
