@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Product, Category
 
@@ -23,3 +25,12 @@ def index(request, category):
 def detail(request, product_id):
 	product = get_object_or_404(Product, pk=product_id)
 	return render(request, 'webapp/detail.html', {'product': product})
+
+def order(request, product_id):
+	product = get_object_or_404(Product, pk=product_id)
+	print(request.POST)
+	ordered = int(request.POST['number'])
+	product.quantity -= ordered
+	product.save()
+
+	return HttpResponseRedirect(reverse('webapp:detail', args=[product_id]))

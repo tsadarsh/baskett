@@ -10,5 +10,14 @@
 	<h2>Sold by: {{ product.seller }}</h2>
 	<h3>Current rating: {{ product.rating }}</h3>
 	<h4>Available quantity: {{ product.quantity }}</h4>
+	<form action="{% url 'webapp:order' product.id %}" method="post">
+	{% csrf_token %}
+	<fieldset>
+		{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
+		<label for="number">Pick a quantity:</label>
+		<input required type="number" name="number" min="1" max="{{ product.quantity }}" />
+		<input type="submit" name="submit" value="Buy">
+	</fieldset>
+	</form>
 </body>
 </html>
