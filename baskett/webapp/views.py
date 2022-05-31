@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 
 
-@login_required
 def home(request):
 	"""Home page lists the categories available to choose from"""
 	categories = Category.objects.all
@@ -28,6 +27,7 @@ def detail(request, product_id):
 	product = get_object_or_404(Product, pk=product_id)
 	return render(request, 'webapp/detail.html', {'product': product})
 
+@login_required
 def order(request, product_id):
 	product = get_object_or_404(Product, pk=product_id)
 	print(request.POST)
