@@ -6,10 +6,18 @@
 	<title>History View</title>
 </head>
 <body>
-	{% for i in history %}
-	<li>
-		{{ i.item.product_name }} - {{ i.buyer.username }}
-	</li>
-	{% endfor %}
+	<h1>Orders placed by {{ user.username }}</h1>
+	<table>
+		<tr>
+			<th>Item</td>
+			<th>Quantity</td>
+		</tr>
+		{% for history in user_buy_history %}
+		<tr>
+			<td>{{ history.item.product_name }}</td>
+			<td>{{ history.quantity }}</td>
+		</tr>
+		{% endfor %}
+	</table>
 </body>
 </html>

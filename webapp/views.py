@@ -29,19 +29,32 @@ def detail(request, product_id):
 
 @login_required
 def order(request, product_id):
+	"""Order is placed, stock quantity is reduced and new record in 
+	history is made.
+	"""
 	product = get_object_or_404(Product, pk=product_id)
-	print(request.POST)
 	ordered = int(request.POST['number'])
 	product.quantity -= ordered
 	product.save()
 
 	History.objects.create(
 		item = product,
-		buyer = request.user
+		buyer = request.user,
+		quantity = ordered
 	)
 
 	return HttpResponseRedirect(reverse('webapp:detail', args=[product_id]))
 
+@login_required
 def history(request):
-	history = History.objects.all
-	return render(request, 'webapp/history.html', {'history':history})
+	"""The orders placed by the User is retreived from the DB. """
+	user = request.user
+	user_buy_history = History.objects.filter(buyer__exact=user)
+	return render(
+		request, 
+		'webapp/history.html', 
+		{
+			'user_buy_history': user_buy_history,
+			'user': user
+		}
+	)
