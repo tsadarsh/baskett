@@ -6,18 +6,28 @@
 	<title>History View</title>
 </head>
 <body>
+
+<!-- 	<header>
+		<div><a href="{% url 'accounts:logout'  %}">Log out</a></div>
+	</header> -->
+
+<!-- List the history of orders placed by the user -->
 	<h1>Orders placed by {{ user.username }}</h1>
-	<table>
-		<tr>
-			<th>Item</td>
-			<th>Quantity</td>
-		</tr>
-		{% for history in user_buy_history %}
-		<tr>
-			<td>{{ history.item.product_name }}</td>
-			<td>{{ history.quantity }}</td>
-		</tr>
-		{% endfor %}
-	</table>
+	<section>
+		<table>
+			<tr>
+				<th>Item</td>
+				<th>Quantity</td>
+			</tr>
+			{% for history in user_buy_history %}
+			<tr>
+				<td>{{ history.item.product_name }}</td>
+				<td>{{ history.quantity }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</section>
+<!-- END section -->
+
 </body>
 </html>

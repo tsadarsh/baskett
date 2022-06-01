@@ -6,6 +6,15 @@
 	<title>Baskett - {{ product.product_name }}</title>
 </head>
 <body>
+
+<!-- HEADER section for Login and Signup -->
+	<header>
+		<div><a href="{% url 'accounts:login' %}">Login</a></div>
+		<div><a href="{% url 'accounts:signup' %}">Sign Up</a></div>
+	</header>
+<!-- END HEADER -->
+
+<!-- List the details of the product selected -->
 	<h1>{{ product.product_name }}</h1>
 	<h2>Sold by: {{ product.seller }}</h2>
 	<h3>Current rating: {{ product.rating }}</h3>
@@ -19,5 +28,7 @@
 		<input type="submit" name="submit" value="Buy">
 	</fieldset>
 	</form>
+<!-- END list -->
+
 </body>
 </html>

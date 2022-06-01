@@ -6,13 +6,26 @@
 	<title>Home Page</title>
 </head>
 <body>
-	<ul>
-		{% for product in products %}
-		<li>
-			<h1><a href="{% url 'webapp:detail' product.pk %}">{{ product.product_name }}</a></h1>
-			<h2>By {{ product.seller }}
-		</li>
-		{% endfor %}
-	</ul>
+
+<!-- HEADER section for Login and Signup -->
+	<header>
+		<div><a href="{% url 'accounts:login' %}">Login</a></div>
+		<div><a href="{% url 'accounts:signup' %}">Sign Up</a></div>
+	</header>
+<!-- END HEADER -->
+
+<!-- List the items available for purchase-->
+	<section>
+		<ul>
+			{% for product in products %}
+			<li>
+				<h1><a href="{% url 'webapp:detail' product.pk %}">{{ product.product_name }}</a></h1>
+				<h2>By {{ product.seller }}</h2>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+<!-- END section -->
+
 </body>
 </html>

@@ -7,28 +7,34 @@
 	<link rel="stylesheet" type="text/css" href="login.css">
 </head>
 <body>
-	<div class="login-box">
-	  <h2>Login</h2>
-	  <form action="{% url 'accounts:login_auth'%}" method="post">
-	  {% csrf_token %}
-	  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-	    <div class="user-box">
-	      <input type="text" name="uname" required="">
-	      <label>Username</label>
-	    </div>
-	    <div class="user-box">
-	      <input type="password" name="passwd" required="">
-	      <label>Password</label>
-	    </div>
-	    <a href="#">
-	      <span></span>
-	      <span></span>
-	      <span></span>
-	      <span></span>
-	      <input type="submit" name="submit" value="Submit">
-	    </a>
-	  </form>
-	  <a href="{% url 'accounts:signup' %}">New User? Sign-up here</a>
-	</div>
+
+	<!-- Login section -->
+	<section>
+		<div class="login-box">
+		  <h2>Login</h2>
+		  <form action="{% url 'accounts:login_auth'%}" method="post">
+		  {% csrf_token %}
+		  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+		    <div class="user-box">
+		      <input type="text" name="uname" required="">
+		      <label>Username</label>
+		    </div>
+		    <div class="user-box">
+		      <input type="password" name="passwd" required="">
+		      <label>Password</label>
+		    </div>
+		    <a href="#">
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		      <input type="submit" name="submit" value="Submit">
+		    </a>
+		  </form>
+		  <a href="{% url 'accounts:signup' %}">New User? Sign-up here</a>
+		</div>
+	</section>
+	<!-- END section -->
+	
 </body>
 </html>

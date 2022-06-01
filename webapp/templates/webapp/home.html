@@ -6,11 +6,24 @@
 	<title>Landing page</title>
 </head>
 <body>
-	{% for category in categories %}
-	<ul>
-		<li><a href="{% url 'webapp:index' category.category %}">{{ category.category }}</a></li>
-	</ul>
-	{% endfor %}
-	<li><a href="{% url 'webapp:index' 'all' %}">View all products</a></li>
+
+<!-- HEADER section for Login and Signup -->
+	<header>
+		<div><a href="{% url 'accounts:login' %}">Login</a></div>
+		<div><a href="{% url 'accounts:signup' %}">Sign Up</a></div>
+	</header>
+<!-- END HEADER -->
+
+<!-- List the catrgories available for purchase-->
+	<section>
+		{% for category in categories %}
+		<ul>
+			<li><a href="{% url 'webapp:index' category.category %}">{{ category.category }}</a></li>
+		</ul>
+		{% endfor %}
+		<li><a href="{% url 'webapp:index' 'all' %}">View all products</a></li>
+	</section>
+<!-- END section -->
+
 </body>
 </html>
