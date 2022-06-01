@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Product, Category
+from .models import Product, Category, History
 
 
 def home(request):
@@ -35,4 +35,13 @@ def order(request, product_id):
 	product.quantity -= ordered
 	product.save()
 
+	History.objects.create(
+		item = product,
+		buyer = request.user
+	)
+
 	return HttpResponseRedirect(reverse('webapp:detail', args=[product_id]))
+
+def history(request):
+	history = History.objects.all
+	return render(request, 'webapp/history.html', {'history':history})

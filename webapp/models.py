@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Seller(models.Model):
 	"""Each product comes under one seller
@@ -24,9 +25,22 @@ class Product(models.Model):
 	seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 	product_name = models.CharField(max_length=300)
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
-	# product_img = models.ImageField()
 	quantity = models.IntegerField(default=0)
 	rating = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.product_name
+
+class History(models.Model):
+	item = models.ForeignKey(
+		Product,
+		on_delete=models.SET_NULL,
+		blank=True,
+		null=True
+	)
+	buyer = models.ForeignKey(
+		User,
+		on_delete=models.SET_NULL,
+		blank=True,
+		null=True
+	)
