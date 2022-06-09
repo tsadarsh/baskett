@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'baskett.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'buckett',
+        'NAME': 'baskett',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
