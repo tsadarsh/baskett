@@ -37,6 +37,10 @@ class Product(models.Model):
 
 class History(models.Model):
 	"""Displays the history of oders placed by the User """
-	item = models.ForeignKey(Product, on_delete=models.SET_NULL)
-	buyer = models.ForeignKey(User, on_delete=models.SET_NULL)
+	item = models.ForeignKey(
+		Product, on_delete=models.SET_NULL, null=True
+	)
+	buyer = models.ForeignKey(
+		User, on_delete=models.SET_NULL, null=True
+	)
 	quantity = models.IntegerField(default=0)
