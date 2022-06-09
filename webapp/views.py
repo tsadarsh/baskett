@@ -4,12 +4,14 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-from .models import Product, Category, History
+from .models import Product
+from .models import Category
+from .models import History
 
 
 def home(request):
 	"""Home page lists the categories available to choose from"""
-	categories = Category.objects.all
+	categories = Category.objects.all()
 	return render(request, 'webapp/home.html', {'categories': categories})
 
 def index(request, category):
@@ -34,16 +36,20 @@ def order(request, product_id):
 	history is made.
 	"""
 	product = get_object_or_404(Product, pk=product_id)
-	ordered = int(request.POST['number'])
-	product.quantity -= ordered
-	product.save()
+	if product.seller.available:
+		ordered = int(request.POST['number'])
+		if ordered <= product.quantity:
+			product.quantity -= ordered
+			product.save()
 
-	History.objects.create(
-		item = product,
-		buyer = request.user,
-		quantity = ordered
-	)
+			History.objects.create(
+				item = product,
+				buyer = request.user,
+				quantity = ordered
+			)
 
+	else:
+		pass
 	return HttpResponseRedirect(reverse('webapp:detail', args=[product_id]))
 
 @login_required
@@ -59,3 +65,8 @@ def history(request):
 			'user': user
 		}
 	)
+
+def remove_seller(request):
+	s = request.POST['name']
+	seller = Seller.objects.filter('s__exact')
+	seller.available = False
